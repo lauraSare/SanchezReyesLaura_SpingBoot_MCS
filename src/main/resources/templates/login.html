@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" 
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <h2 class="text-center mb-4">Iniciar Sesión</h2>
+
+            <!-- Mensaje de error de login -->
+            <div th:if="${param.error}" class="alert alert-danger">
+                Usuario o contraseña incorrectos.
+            </div>
+
+            <!-- Mensaje de logout -->
+            <div th:if="${param.logout}" class="alert alert-info">
+                Sesión cerrada correctamente.
+            </div>
+
+            <!-- Mensaje de registro exitoso -->
+            <div th:if="${param.registroExitoso}" class="alert alert-success">
+                Registro exitoso, ahora puedes iniciar sesión.
+            </div>
+
+            <form th:action="@{/login}" method="POST">
+                <div class="form-group">
+                    <label>Usuario</label>
+                    <input type="text" name="username" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" name="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block mt-3">
+                    Entrar
+                </button>
+            </form>
+
+            <hr>
+            <p class="text-center">
+                ¿No tienes cuenta? 
+                <a th:href="@{/registro}">Regístrate aquí</a>
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
